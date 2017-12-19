@@ -102,7 +102,7 @@
             Sitecore.Links.LinkDatabase linkDatabase = ItemEventHandler.LinkDatabase;
             if (linkDatabase != null)
             {
-                linkDatabase.UpdateItemVersionReferences(item);
+                //linkDatabase.UpdateItemVersionReferences(item);
                 //sitecore.support.187476
                 ItemLink[] allReferences = linkDatabase.GetReferences(item);
                 foreach (var reference in allReferences)
@@ -112,6 +112,7 @@
                         RemoveLink(item, reference);
                     }
                 }
+                linkDatabase.UpdateItemVersionReferences(item);
                 //end of sitecore.support.187476   
             }
         }
@@ -135,7 +136,7 @@
             {
                 version.Editing.BeginEdit();
                 field2.RemoveLink(itemLink);
-                version.Editing.EndEdit();
+                version.Editing.EndEdit(true);
             }
         }
         //end of sitecore.support.187476
